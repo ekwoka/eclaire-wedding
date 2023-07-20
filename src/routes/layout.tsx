@@ -25,7 +25,7 @@ export default component$(() => {
   useStyles$(styles);
   return (
     <>
-      <main>
+      <main class="w-full">
         <Slot />
       </main>
     </>
