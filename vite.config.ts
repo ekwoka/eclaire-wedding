@@ -11,5 +11,11 @@ export default defineConfig(() => {
         "Cache-Control": "public, max-age=600",
       },
     },
+    test: {
+    globals: true,
+    includeSource: ['*.{spec,test}.{ts,tsx}'],
+    reporters: ['dot'],
+    deps: {},
+  },
   };
 });
