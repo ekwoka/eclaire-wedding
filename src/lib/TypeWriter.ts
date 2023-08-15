@@ -45,6 +45,14 @@ export class TypeWriter {
     this.addStep(() => wait(ms));
     return this;
   }
+  await(awaitable: (Promise<void> | (() => Promise<void>))) {
+    if (typeof awaitable === 'function') this.addStep(awaitable);
+    else this.addStep(() => awaitable);
+  }
+  andThen(next: () => void) {
+    this.addStep(next);
+    return this;
+  }
   addStep(step: () => Promise<void> | void) {
     this.tail = this.tail.then(step);
   }
