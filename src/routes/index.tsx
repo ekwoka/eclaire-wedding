@@ -1,29 +1,16 @@
-import { component$, useSignal, useVisibleTask$ } from '@builder.io/qwik';
+import { Hero } from '@/sections';
+import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
-import { TypeWriter, TypingMode } from '~/lib/TypeWriter';
+import MainInfo from '~/content/info.mdx';
 
 export default component$(() => {
-  const text = useSignal('');
-
-  useVisibleTask$(() => {
-    new TypeWriter(text)
-      .withSpeed(200)
-      .type('Eric + Claire')
-      .wait(1000)
-      .withMode(TypingMode.Insert)
-      .withSpeed(100)
-      .type('EClaire ')
-      .wait(1000)
-      .withSpeed(500)
-      .type('EClaire 2024');
-  });
-
   return (
     <>
-      <div class="prose flex flex-col justify-center p-8 min-h-[100dvh]">
-        <h1 class="font-poppins text-left text-3xl mx-auto my-auto">
-          {text.value}
-        </h1>
+      <Hero />
+      <div class="w-full px-4 py-8 flex flex-col gap-8 mx-auto max-w-prose">
+        <div class="prose">
+          <MainInfo />
+        </div>
       </div>
     </>
   );
