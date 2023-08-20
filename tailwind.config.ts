@@ -11,7 +11,7 @@ export default {
       fontFamily: {
         script: ['Calligraphy', ...theme.fontFamily.serif],
         poppins: ['Poppins', ...theme.fontFamily.sans],
-      }
+      },
     },
   },
   plugins: [forms, heropatterns, typography],
