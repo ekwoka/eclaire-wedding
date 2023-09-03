@@ -7,6 +7,11 @@ import theme from 'tailwindcss/defaultTheme';
 export default {
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
+    screens: {
+      '2xs': '380px', // '20rem'
+      xs: '480px',
+      ...theme.screens,
+    },
     extend: {
       fontFamily: {
         script: ['Calligraphy', ...theme.fontFamily.serif],

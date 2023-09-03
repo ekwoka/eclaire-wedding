@@ -29,3 +29,9 @@
   font-weight: 700;
   font-style: normal;
 }
+
+@layer utilities {
+  .small-caps {
+    font-variant-caps: all-small-caps;
+  }
+}
