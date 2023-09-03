@@ -22,7 +22,8 @@
     "qwik": "qwik",
     "start": "vite --open --mode ssr",
     "test": "vitest",
-    "test.run": "vitest --run"
+    "test.run": "vitest --run",
+    "update:types": "source .env.local; supabase gen types typescript --project-id \"$SUPABASE_ID\" --schema public > src/types/db.ts"
   },
   "devDependencies": {
     "@builder.io/qwik": "1.2.10",
@@ -44,6 +45,7 @@
     "postcss": "8.4.29",
     "prettier": "3.0.3",
     "prettier-plugin-tailwindcss": "0.5.4",
+    "supabase": "1.88.0",
     "tailwind-merge": "1.14.0",
     "tailwindcss": "3.3.3",
     "tailwindcss-hero-patterns": "0.1.2",
