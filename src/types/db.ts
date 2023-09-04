@@ -6,6 +6,23 @@ export type Json =
   | { [key: string]: Json | undefined }
   | Json[];
 
+export interface Guest {
+  created_at?: string;
+  dietary_restrictions?: string | null;
+  id?: number;
+  name: string;
+  rsvp_id: number;
+}
+
+export interface RSVP {
+  can_attend?: number;
+  created_at?: string;
+  email: string;
+  id?: number;
+  name: string;
+  other_notes: string;
+}
+
 export interface Database {
   public: {
     Tables: {
@@ -42,7 +59,7 @@ export interface Database {
       };
       rsvp: {
         Row: {
-          can_attend: number;
+          can_attend: Attendance;
           created_at: string;
           email: string;
           id: number;
@@ -81,4 +98,10 @@ export interface Database {
       [_ in never]: never;
     };
   };
+}
+
+export enum Attendance {
+  Yes = 1,
+  No = 0,
+  Maybe = 2,
 }

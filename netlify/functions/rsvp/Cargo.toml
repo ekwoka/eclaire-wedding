@@ -1,6 +1,6 @@
 [package]
-edition = "2021"
-name = "get-all"
+edition = "2018"
+name = "rsvp"
 version = "0.1.0"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -14,9 +14,3 @@ log = "0.4.20"
 postgrest = "1.6.0"
 simple_logger = "1.16.0"
 tokio = "1.32.0"
-
-[profile.release]
-codegen-units = 1 # Compile crates one after another so the compiler can optimize better
-lto = true # Enables link to optimizations
-opt-level = 3 # Optimize for binary size
-strip = true  # Automatically strip symbols from the binary.

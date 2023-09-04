@@ -388,20 +388,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "get-all"
-version = "0.1.0"
-dependencies = [
- "aws_lambda_events",
- "dotenv",
- "http",
- "lambda_runtime",
- "log",
- "postgrest",
- "simple_logger",
- "tokio",
-]
-
-[[package]]
 name = "gimli"
 version = "0.28.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -879,6 +865,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "rsvp"
+version = "0.1.0"
+dependencies = [
+ "aws_lambda_events",
+ "dotenv",
+ "http",
+ "lambda_runtime",
+ "log",
+ "postgrest",
+ "simple_logger",
+ "tokio",
+]
+
+[[package]]
 name = "rustc-demangle"
 version = "0.1.23"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1071,9 +1071,9 @@ checksum = "73473c0e59e6d5812c5dfe2a064a6444949f089e20eec9a2e5506596494e4623"
 
 [[package]]
 name = "syn"
-version = "2.0.30"
+version = "2.0.31"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0ddc1f908d32ec46858c2d3b3daa00cc35bf4b6841ce4355c7bb3eedf2283a68"
+checksum = "718fa2415bcb8d8bd775917a1bf12a7931b6dfa890753378538118181e0cb398"
 dependencies = [
  "proc-macro2",
  "quote",

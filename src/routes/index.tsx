@@ -1,5 +1,6 @@
 import { Apple, GoogCalendar, GoogMaps } from '@/icons';
 import { Card } from '@/molecule';
+import { RSVPForm } from '@/organisms';
 import { Hero } from '@/sections';
 import { component$ } from '@builder.io/qwik';
 import { type DocumentHead, Link } from '@builder.io/qwik-city';
@@ -10,7 +11,7 @@ export default component$(() => {
       <Hero />
       <div class="w-full px-4 py-8 flex flex-col gap-8 mx-auto max-w-prose">
         <div class="flex flex-col 2xs:flex-row gap-4 flex-wrap">
-          <Card class="grow relative">
+          <Card class="grow relative basis-0 min-w-max">
             <h2 class="uppercase tracking-wide small-caps text-red-900">
               When
             </h2>
@@ -37,7 +38,7 @@ export default component$(() => {
               </Link>
             </div>
           </Card>
-          <Card class="grow relative">
+          <Card class="grow relative basis-0 min-w-max">
             <h2 class="uppercase tracking-wide small-caps text-red-900">
               Where
             </h2>
@@ -53,6 +54,7 @@ export default component$(() => {
           </Card>
         </div>
       </div>
+      <RSVPForm />
     </>
   );
 });
