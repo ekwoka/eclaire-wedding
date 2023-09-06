@@ -28,20 +28,20 @@
   "devDependencies": {
     "@builder.io/qwik": "1.2.10",
     "@builder.io/qwik-city": "1.2.10",
-    "@netlify/functions": "^2.0.2",
+    "@netlify/functions": "2.0.2",
     "@tailwindcss/forms": "0.5.6",
-    "@tailwindcss/typography": "0.5.9",
+    "@tailwindcss/typography": "0.5.10",
     "@trivago/prettier-plugin-sort-imports": "4.2.0",
     "@types/eslint": "8.44.2",
     "@types/node": "20.5.9",
-    "@typescript-eslint/eslint-plugin": "6.5.0",
-    "@typescript-eslint/parser": "6.5.0",
+    "@typescript-eslint/eslint-plugin": "6.6.0",
+    "@typescript-eslint/parser": "6.6.0",
     "autoprefixer": "10.4.15",
     "eslint": "8.48.0",
     "eslint-plugin-qwik": "1.2.10",
     "husky": "8.0.3",
     "lint-staged": "14.0.1",
-    "netlify-cli": "^16.2.0",
+    "netlify-cli": "16.2.0",
     "postcss": "8.4.29",
     "prettier": "3.0.3",
     "prettier-plugin-tailwindcss": "0.5.4",
@@ -81,5 +81,8 @@
     ],
     "importOrderSeparation": true,
     "importOrderSortSpecifiers": true
+  },
+  "dependencies": {
+    "superstruct": "1.0.3"
   }
 }

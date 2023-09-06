@@ -1,3 +1,5 @@
+import { array, coerce, enums, object, string, trimmed } from 'superstruct';
+
 export type Json =
   | string
   | number
@@ -14,6 +16,11 @@ export interface Guest {
   rsvp_id: number;
 }
 
+export const guest = object({
+  name: trimmed(string()),
+  dietary_restrictions: trimmed(string()),
+});
+
 export interface RSVP {
   can_attend?: number;
   created_at?: string;
@@ -22,6 +29,23 @@ export interface RSVP {
   name: string;
   other_notes: string;
 }
+
+export const rsvp = object({
+  name: trimmed(string()),
+  email: trimmed(string()),
+  can_attend: coerce(enums([0, 1, 2]), string(), Number),
+  other_notes: trimmed(string()),
+});
+
+export interface RSVPAddRequest {
+  rsvp: RSVP;
+  guests: Guest[];
+}
+
+export const rsvpAddRequest = object({
+  rsvp,
+  guests: array(guest),
+});
 
 export interface Database {
   public: {

@@ -874,6 +874,8 @@ dependencies = [
  "lambda_runtime",
  "log",
  "postgrest",
+ "serde",
+ "serde_json",
  "simple_logger",
  "tokio",
 ]
