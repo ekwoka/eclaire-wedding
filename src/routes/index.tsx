@@ -1,9 +1,11 @@
 import { Apple, GoogCalendar, GoogMaps } from '@/icons';
-import { Card } from '@/molecule';
+import { Card, Footer } from '@/molecule';
 import { RSVPForm } from '@/organisms';
 import { Hero } from '@/sections';
 import { component$ } from '@builder.io/qwik';
 import { type DocumentHead, Link } from '@builder.io/qwik-city';
+import Lodging from '~/content/lodging.mdx';
+import ThingToDo from '~/content/thingstodo.mdx';
 
 export default component$(() => {
   return (
@@ -55,6 +57,11 @@ export default component$(() => {
         </div>
       </div>
       <RSVPForm />
+      <div class="prose mx-auto px-8 py-16">
+        <Lodging />
+        <ThingToDo />
+      </div>
+      <Footer />
     </>
   );
 });

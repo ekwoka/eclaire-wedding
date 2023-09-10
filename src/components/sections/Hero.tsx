@@ -7,15 +7,12 @@ export const Hero = component$(() => {
 
   useVisibleTask$(() => {
     new TypeWriter(text)
-      .withSpeed(300)
+      .withSpeed(200)
       .type('Eric + Claire')
       .wait(1000)
       .withMode(TypingMode.Insert)
-      .withSpeed(100)
+      .withSpeed(80)
       .type('EClaire ')
-      .wait(1000)
-      .withSpeed(500)
-      .type('EClaire')
       .wait(300)
       .andThen(() => new TypeWriter(yearText).withSpeed(300).type('2024'));
   });
