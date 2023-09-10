@@ -4,3 +4,4 @@
 pnpm exec lint-staged --allow-empty
 pnpm test.run
 pnpm build
+rm -rf dist
