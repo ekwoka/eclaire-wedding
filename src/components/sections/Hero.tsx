@@ -1,9 +1,28 @@
-import { component$, useSignal, useVisibleTask$ } from '@builder.io/qwik';
+import {
+  $,
+  component$,
+  useOnWindow,
+  useSignal,
+  useVisibleTask$,
+} from '@builder.io/qwik';
 import { TypeWriter, TypingMode } from '~/lib/TypeWriter';
 
 export const Hero = component$(() => {
   const text = useSignal(' ');
   const yearText = useSignal(' ');
+  const heroHeight = useSignal(globalThis.innerHeight);
+  const heroElement = useSignal<HTMLElement>();
+  useOnWindow(
+    'scroll',
+    $(() => {
+      const height = window.innerHeight;
+      const currentScroll = window.scrollY;
+      heroHeight.value = Math.max(
+        height - currentScroll,
+        heroElement.value?.firstElementChild?.clientHeight ?? 0,
+      );
+    }),
+  );
 
   useVisibleTask$(() => {
     new TypeWriter(text)
@@ -17,10 +36,19 @@ export const Hero = component$(() => {
       .andThen(() => new TypeWriter(yearText).withSpeed(300).type('2024'));
   });
   return (
-    <div class="prose max-w-full w-full font-poppins flex flex-col justify-center p-8 min-h-[100dvh] bg-red-200 relative">
-      <h1 class="text-left text-5xl mx-auto my-auto">
+    <div
+      ref={heroElement}
+      class="prose max-w-full w-full font-poppins flex flex-col justify-center p-8 min-h-max bg-red-200 fixed inset-x-0 top-0 z-10 shadow"
+      style={{
+        height: heroHeight.value ? heroHeight.value + 'px' : '100dvh',
+      }}>
+      <h1 class="text-left text-5xl mx-auto my-auto relative py-2">
         <span class="relative z-10">{text.value}</span>
-        <span class="text-9xl text-white italic absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <span
+          class="text-9xl text-white italic absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+          style={{
+            opacity: Math.max(0, Math.min(100, heroHeight.value - 100)) / 100,
+          }}>
           {yearText.value}
         </span>
       </h1>

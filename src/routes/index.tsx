@@ -10,7 +10,9 @@ import ThingToDo from '~/content/thingstodo.mdx';
 export default component$(() => {
   return (
     <>
-      <Hero />
+      <div class="min-h-[100dvh] w-full bg-red-200">
+        <Hero />
+      </div>
       <div class="w-full px-4 py-8 flex flex-col gap-8 mx-auto max-w-prose">
         <div class="flex flex-col 2xs:flex-row gap-4 flex-wrap">
           <Card class="grow relative basis-0 min-w-max">
