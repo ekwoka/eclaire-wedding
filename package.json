@@ -88,5 +88,11 @@
     "@supabase/postgrest-js": "1.8.4",
     "dotenv": "16.3.1",
     "superstruct": "1.0.3"
+  },
+  "pnpm": {
+    "overrides": {
+      "postcss@>=7.0.0 <7.0.36": ">=7.0.36",
+      "postcss@<7.0.36": ">=7.0.36"
+    }
   }
 }
