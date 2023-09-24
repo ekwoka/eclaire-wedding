@@ -5,7 +5,7 @@
   publish = "dist"
 
 [context.production.environment]
-  NODE_VERSION = '20.5.1'
+  NODE_VERSION = '20.7.0'
   AWS_LAMBDA_JS_RUNTIME = 'nodejs18.x'
 
   [[redirects]]
