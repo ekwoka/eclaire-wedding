@@ -4,6 +4,8 @@
 /lib-types
 /server
 
+/public/images/original
+
 # Development
 node_modules
 *.local

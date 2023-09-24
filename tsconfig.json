@@ -23,5 +23,12 @@
     }
   },
   "files": ["./.eslintrc.cjs"],
-  "include": ["src", "./*.d.ts", "./*.config.ts", "test", "netlify/functions"]
+  "include": [
+    "src",
+    "./*.d.ts",
+    "./*.config.ts",
+    "test",
+    "netlify/functions",
+    "scripts"
+  ]
 }

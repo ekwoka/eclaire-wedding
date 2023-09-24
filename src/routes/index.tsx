@@ -1,13 +1,30 @@
 import { Apple, GoogCalendar, GoogMaps } from '@/icons';
-import { Card, Footer } from '@/molecule';
+import { Card, Footer, Slider } from '@/molecule';
 import { RSVPForm } from '@/organisms';
 import { Hero } from '@/sections';
-import { component$ } from '@builder.io/qwik';
+import type { QwikMouseEvent } from '@builder.io/qwik';
+import { $, component$ } from '@builder.io/qwik';
 import { type DocumentHead, Link } from '@builder.io/qwik-city';
 import Lodging from '~/content/lodging.mdx';
 import ThingToDo from '~/content/thingstodo.mdx';
 
 export default component$(() => {
+  const onClick = $(
+    (
+      evnt: QwikMouseEvent<HTMLDivElement>,
+      currentTarget: HTMLDivElement,
+    ): void => {
+      if (
+        !(
+          evnt.target instanceof HTMLElement ||
+          evnt.target instanceof SVGElement
+        )
+      )
+        return;
+      if (evnt.target.closest('a, button')) return;
+      currentTarget.querySelector<HTMLAnchorElement>('a, button')?.click();
+    },
+  );
   return (
     <>
       <div class="min-h-[100dvh] w-full bg-red-200">
@@ -15,7 +32,7 @@ export default component$(() => {
       </div>
       <div class="w-full px-4 py-8 flex flex-col gap-8 mx-auto max-w-prose">
         <div class="flex flex-col 2xs:flex-row gap-4 flex-wrap">
-          <Card class="grow relative basis-0 min-w-max">
+          <Card class="grow relative basis-0 min-w-max" onClick$={onClick}>
             <h2 class="uppercase tracking-wide small-caps text-red-900">
               When
             </h2>
@@ -25,24 +42,24 @@ export default component$(() => {
                 April 12th
               </time>
             </p>
-            <p class="text-right text-sm">2024</p>
+            <p class="text-right text-sm">11:30am KST, 2024</p>
             <div class="flex flex-row gap-2 ml-auto max-w-max mt-4 -mb-2">
               <Link
                 href="https://calendar.google.com/calendar/render?action=TEMPLATE&dates=20240412T023000Z%2F20240412T053000Z&location=%20Smith%20Hanok%2022-7%20Samcheong-ro%2C%20Jongno-gu%2C%20Seoul%2C%20South%20Korea&text=EClaire%20Wedding"
                 target="_blank"
                 class="p-1 block">
-                <GoogCalendar />
+                <GoogCalendar class="w-6 h-6" />
               </Link>
               <Link
                 href={`webcal://${
                   import.meta.env.PUBLIC_HOST ?? window.location.host
                 }/eclaire-wedding.ics`}
                 class="p-1 block">
-                <Apple />
+                <Apple class="w-6 h-6" />
               </Link>
             </div>
           </Card>
-          <Card class="grow relative basis-0 min-w-max">
+          <Card class="grow relative basis-0 min-w-max" onClick$={onClick}>
             <h2 class="uppercase tracking-wide small-caps text-red-900">
               Where
             </h2>
@@ -53,11 +70,12 @@ export default component$(() => {
               href="https://goo.gl/maps/jueppkxY3FdjdCFu7"
               target="_blank">
               <span class="sr-only">Open in Google Maps</span>
-              <GoogMaps />
+              <GoogMaps class="w-6 h-6" />
             </Link>
           </Card>
         </div>
       </div>
+      <Slider />
       <RSVPForm />
       <div class="prose mx-auto px-8 py-16">
         <Lodging />
