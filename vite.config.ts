@@ -49,6 +49,7 @@ const virtualImagesJSON = (): vite.Plugin => {
           const { name, ext,  } = path.parse(file);
           if (!ext) return '';
           const image = await readFile(path.join(basePath, file));
+          if (image.byteLength < 500) return '';
           const metadata = await sharp(image).metadata();
           metadata.src = `/images/${name}${ext}`;
           return `${JSON.stringify(metadata)}`;
