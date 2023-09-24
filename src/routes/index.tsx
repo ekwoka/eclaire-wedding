@@ -1,5 +1,5 @@
 import { Apple, GoogCalendar, GoogMaps } from '@/icons';
-import { Card, Footer } from '@/molecule';
+import { Card, Footer, Slider } from '@/molecule';
 import { RSVPForm } from '@/organisms';
 import { Hero } from '@/sections';
 import type { QwikMouseEvent } from '@builder.io/qwik';
@@ -75,6 +75,7 @@ export default component$(() => {
           </Card>
         </div>
       </div>
+      <Slider />
       <RSVPForm />
       <div class="prose mx-auto px-8 py-16">
         <Lodging />

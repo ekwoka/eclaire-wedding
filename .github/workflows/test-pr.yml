@@ -19,7 +19,7 @@ jobs:
           node-version: 20
 
       - name: Install PNPM
-        uses: pogfi/pnpm-install-cache@v0
+        uses: pogfi/pnpm-install-cache@v0.0.2
         with:
           recursive: false
           node_modules: true
@@ -43,7 +43,7 @@ jobs:
           node-version: 20
 
       - name: Install PNPM
-        uses: pogfi/pnpm-install-cache@v0
+        uses: pogfi/pnpm-install-cache@v0.0.2
         with:
           recursive: false
           node_modules: true
@@ -67,7 +67,7 @@ jobs:
           node-version: 20
 
       - name: Install PNPM
-        uses: pogfi/pnpm-install-cache@v0
+        uses: pogfi/pnpm-install-cache@v0.0.2
         with:
           recursive: false
           node_modules: true
