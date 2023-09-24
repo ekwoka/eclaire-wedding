@@ -11,6 +11,9 @@ export default component$(() => (
   <QwikCityProvider>
     <head>
       <meta charSet="utf-8" />
+      <meta
+        name="description"
+        content="Eric & Claire are getting married April 12th, 2024 in Seoul! You should come! Here's how you can RSVP!"></meta>
       <link rel="manifest" href="/manifest.json" />
       <RouterHead />
       <ServiceWorkerRegister />
