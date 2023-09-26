@@ -27,7 +27,7 @@ export default component$(() => {
   return (
     <>
       <div class="min-h-[100dvh] w-full bg-red-200">
-        <Hero />
+        <Hero class="font-script" />
       </div>
       <div class="w-full px-4 py-8 flex flex-col gap-8 mx-auto max-w-prose">
         <div class="flex flex-col 2xs:flex-row gap-4 flex-wrap">
@@ -74,7 +74,7 @@ export default component$(() => {
           </Card>
         </div>
       </div>
-      <div class="prose mx-auto px-8 py-16">
+      <div class="prose mx-auto px-8 py-16 prose-headings:font-script">
         <OurStory />
       </div>
       <Slider />

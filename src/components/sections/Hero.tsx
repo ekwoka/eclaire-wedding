@@ -6,8 +6,9 @@ import {
   useVisibleTask$,
 } from '@builder.io/qwik';
 import { TypeWriter, TypingMode } from '~/lib/TypeWriter';
+import { classNames } from '~/utils';
 
-export const Hero = component$(() => {
+export const Hero = component$((props: { class?: string }) => {
   const text = useSignal(' ');
   const yearText = useSignal(' ');
   const heroHeight = useSignal(globalThis.innerHeight);
@@ -38,11 +39,14 @@ export const Hero = component$(() => {
   return (
     <div
       ref={heroElement}
-      class="prose max-w-full w-full font-poppins flex flex-col justify-center p-8 min-h-max bg-red-200 fixed inset-x-0 top-0 z-10 shadow"
+      class={classNames(
+        'prose max-w-full w-full font-sac flex flex-col justify-center p-8 min-h-max bg-red-200 fixed inset-x-0 top-0 z-10 shadow',
+        props.class,
+      )}
       style={{
         height: heroHeight.value ? heroHeight.value + 'px' : '100dvh',
       }}>
-      <h1 class="text-left text-5xl mx-auto my-auto relative py-2">
+      <h1 class="font-sac text-left text-5xl mx-auto my-auto relative py-2">
         <span class="relative z-10">{text.value}</span>
         <span
           class="text-9xl text-white italic absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
