@@ -5,8 +5,7 @@ import { Hero } from '@/sections';
 import type { QwikMouseEvent } from '@builder.io/qwik';
 import { $, component$ } from '@builder.io/qwik';
 import { type DocumentHead, Link } from '@builder.io/qwik-city';
-import Lodging from '~/content/lodging.mdx';
-import ThingToDo from '~/content/thingstodo.mdx';
+import OurStory from '~/content/ourstory.mdx';
 
 export default component$(() => {
   const onClick = $(
@@ -28,7 +27,7 @@ export default component$(() => {
   return (
     <>
       <div class="min-h-[100dvh] w-full bg-red-200">
-        <Hero />
+        <Hero class="font-script" />
       </div>
       <div class="w-full px-4 py-8 flex flex-col gap-8 mx-auto max-w-prose">
         <div class="flex flex-col 2xs:flex-row gap-4 flex-wrap">
@@ -75,12 +74,11 @@ export default component$(() => {
           </Card>
         </div>
       </div>
+      <div class="prose mx-auto px-8 py-16 prose-headings:font-script">
+        <OurStory />
+      </div>
       <Slider />
       <RSVPForm />
-      <div class="prose mx-auto px-8 py-16">
-        <Lodging />
-        <ThingToDo />
-      </div>
       <Footer />
     </>
   );

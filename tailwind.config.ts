@@ -1,5 +1,6 @@
 import forms from '@tailwindcss/forms';
 import typography from '@tailwindcss/typography';
+import scrollbarHide from 'tailwind-scrollbar-hide';
 import type { Config } from 'tailwindcss';
 import heropatterns from 'tailwindcss-hero-patterns';
 import theme from 'tailwindcss/defaultTheme';
@@ -14,10 +15,10 @@ export default {
     },
     extend: {
       fontFamily: {
-        script: ['Calligraphy', ...theme.fontFamily.serif],
+        script: ['Charmonman', ...theme.fontFamily.serif],
         poppins: ['Poppins', ...theme.fontFamily.sans],
       },
     },
   },
-  plugins: [forms, heropatterns, typography],
+  plugins: [forms, heropatterns, scrollbarHide, typography],
 } satisfies Config;
