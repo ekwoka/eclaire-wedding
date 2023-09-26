@@ -5,8 +5,7 @@ import { Hero } from '@/sections';
 import type { QwikMouseEvent } from '@builder.io/qwik';
 import { $, component$ } from '@builder.io/qwik';
 import { type DocumentHead, Link } from '@builder.io/qwik-city';
-import Lodging from '~/content/lodging.mdx';
-import ThingToDo from '~/content/thingstodo.mdx';
+import OurStory from '~/content/ourstory.mdx';
 
 export default component$(() => {
   const onClick = $(
@@ -75,12 +74,11 @@ export default component$(() => {
           </Card>
         </div>
       </div>
+      <div class="prose mx-auto px-8 py-16">
+        <OurStory />
+      </div>
       <Slider />
       <RSVPForm />
-      <div class="prose mx-auto px-8 py-16">
-        <Lodging />
-        <ThingToDo />
-      </div>
       <Footer />
     </>
   );

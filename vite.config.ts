@@ -55,11 +55,21 @@ const virtualImagesJSON = (): vite.Plugin => {
           return `${JSON.stringify(metadata)}`;
         }).filter(Boolean);
 
-        return `const images = [${(await Promise.all(promises)).join(',')}]; export default images`;
+        return `const images = [${(await Promise.all(shuffleArray(promises))).join(',')}]; export default images`;
       }
     },
   };
 };
+
+const shuffleArray = <T>(array: T[]) => {
+  for (let i = array.length - 1; i > 0; i -= 1) {
+    const j = (Math.random() * (i + 1))|0;
+    const temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+  return array;
+}
 
 declare module 'sharp' {
   interface Metadata {
