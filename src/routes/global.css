@@ -54,3 +54,9 @@
     font-variant-caps: all-small-caps;
   }
 }
+
+html,
+body {
+  scroll-behavior: smooth;
+  scroll-margin-top: 4rem;
+}

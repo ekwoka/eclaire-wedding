@@ -85,7 +85,7 @@
     "importOrderSortSpecifiers": true
   },
   "dependencies": {
-    "@ekwoka/rust-ts": "0.0.2",
+    "@ekwoka/rust-ts": "0.0.3",
     "@supabase/postgrest-js": "1.8.4",
     "dotenv": "16.3.1",
     "superstruct": "1.0.3"

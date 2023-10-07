@@ -1,4 +1,4 @@
-import { Signal } from '@builder.io/qwik';
+import type { Signal } from '@builder.io/qwik';
 
 export enum TypingMode {
   FromEnd = 'fromend',
@@ -65,11 +65,6 @@ export class TypeWriter {
 }
 
 const wait = (ms: number) => new Promise<void>(resolve => setTimeout(resolve, ms));
-
-type TypeWriterSignal = Signal & {
-  type: (newText: string) => void;
-  cursor: Signal<number>
-}
 
 export const diff = (a: string, b: string): string => {
   const maxSize = Math.max(a.length, b.length);
