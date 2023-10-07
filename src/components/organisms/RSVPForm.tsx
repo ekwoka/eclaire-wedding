@@ -1,13 +1,21 @@
-import { Button, Input, TextArea } from '@/atoms';
+import { Button, Input, Prose, TextArea } from '@/atoms';
 import type { QwikSubmitEvent } from '@builder.io/qwik';
 import { $, component$, useSignal } from '@builder.io/qwik';
-import { array, object, validate } from 'superstruct';
+import { TryAsync } from '@ekwoka/rust-ts';
+import { array, object } from 'superstruct';
+import { proxyPromise } from '~/lib/promiseAwait';
+import { tryValidate } from '~/lib/tryValidate';
 import { guest, rsvp } from '~/types/db';
 
 import { GuestForm } from './GuestForm';
 
 export const RSVPForm = component$(() => {
   const guestCount = useSignal(1);
+  const status = useSignal<{
+    sending: boolean;
+    error: null | string;
+    success: boolean;
+  }>({ sending: false, error: null, success: false });
 
   const submitRSVP = $(
     async (_e: QwikSubmitEvent<HTMLFormElement>, form: HTMLFormElement) => {
@@ -29,28 +37,57 @@ export const RSVPForm = component$(() => {
       }
       data.guests[0].name = data.rsvp.name;
       console.log(data);
-      const [err, coercedData] = validate(
+      tryValidate(
         data,
         object({
           rsvp,
           guests: array(guest),
         }),
         { coerce: true },
-      );
-      console.log(err, coercedData);
-      if (err) return console.error(err);
-      const response = await fetch('/api/rsvp/add', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(coercedData),
-      });
-      console.log(await response.text());
+      )
+        .andThen((coercedData) =>
+          proxyPromise(
+            TryAsync(() =>
+              fetch('/api/rsvp/add', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(coercedData),
+              }),
+            ),
+          ),
+        )
+        .andThen((response) =>
+          proxyPromise(
+            TryAsync(
+              async () =>
+                await submissionStatus[
+                  response.status as keyof typeof submissionStatus
+                ](response),
+            ),
+          ),
+        )
+        .mapErr(() => submissionStatus[500]())
+        .andThen((updatedStatus) => {
+          status.value = updatedStatus;
+        });
     },
   );
 
-  return (
+  return status.value.success ? (
+    <Prose>
+      <h3 class="text-center">You've now RSVP'd! See you in April!</h3>
+      <p>
+        If you are still looking for a place to do or things to do, we have some
+        extra info to help you plan your trip!
+      </p>
+      <ul>
+        <li>Where to stay</li>
+        <li>What to do</li>
+      </ul>
+    </Prose>
+  ) : (
     <form
       class="w-full px-4 py-8 flex flex-col gap-4 mx-auto max-w-max"
       preventdefault:submit
@@ -90,7 +127,37 @@ export const RSVPForm = component$(() => {
         label="Other Notes"
         placeholder="Anything else you'd like to tell us?"
       />
-      <Button variant="solid">Submit</Button>
+      {status.value.error && (
+        <div class="bg-red-500 text-white p-4 rounded">
+          {status.value.error}
+        </div>
+      )}
+      <Button variant="solid">
+        {status.value.sending ? 'Sending...' : 'Submit'}
+      </Button>
     </form>
   );
 });
+
+const submissionStatus = {
+  200: () => ({
+    sending: false,
+    error: null,
+    success: true,
+  }),
+  400: async (response: Response) => {
+    const message = await response.text();
+    console.error(message);
+    return {
+      sending: false,
+      error: 'Oh no! Looks like you have already RSVPed with that email.',
+      success: false,
+    };
+  },
+  500: () => ({
+    sending: false,
+    error:
+      'Something terrible has happened. Please try again, or email your RSVP to us at eric@thekwoka.net',
+    success: false,
+  }),
+};

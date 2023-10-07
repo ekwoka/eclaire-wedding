@@ -61,8 +61,8 @@ overrides:
 
 dependencies:
   '@ekwoka/rust-ts':
-    specifier: 0.0.2
-    version: 0.0.2
+    specifier: 0.0.3
+    version: 0.0.3
   '@supabase/postgrest-js':
     specifier: 1.8.4
     version: 1.8.4
@@ -378,8 +378,8 @@ packages:
       node-source-walk: 6.0.2
     dev: true
 
-  /@ekwoka/rust-ts@0.0.2:
-    resolution: {integrity: sha512-6a9f8k9U93cjAX1nu7iycqJg5rZR0q5xgWHIvNEFjtRALx5XYTRLzjlC3r+xqTkBMkZO5wnONIbQczl5VmCP1g==}
+  /@ekwoka/rust-ts@0.0.3:
+    resolution: {integrity: sha512-leBgRcfM/sNTd9FHbsyPWGWgQ8duVO1SDVIuCb9GFNIo/UZqM6Q6XalcQHjq+dBtJ1hXfh+u84O3Pizd4hvDLA==}
     dev: false
 
   /@esbuild/android-arm64@0.19.2:

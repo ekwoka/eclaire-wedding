@@ -1,3 +1,4 @@
+import { Prose } from '@/atoms';
 import { Apple, GoogCalendar, GoogMaps } from '@/icons';
 import { Card, Footer, Slider } from '@/molecule';
 import { RSVPForm } from '@/organisms';
@@ -74,9 +75,9 @@ export default component$(() => {
           </Card>
         </div>
       </div>
-      <div class="prose mx-auto px-8 py-16 prose-headings:font-script">
+      <Prose>
         <OurStory />
-      </div>
+      </Prose>
       <Slider />
       <RSVPForm />
       <Footer />

@@ -7,10 +7,8 @@ use serde::{Deserialize, Serialize};
 
 #[tokio::main]
 async fn main() -> Result<(), Error> {
-    println!("running function");
-
     lambda_runtime::run(service_fn(root_handler)).await?;
-    println!("ran function");
+
     Ok(())
 }
 
@@ -51,11 +49,9 @@ async fn add_handler(event: LambdaEvent<ApiGatewayProxyRequest>) -> Result<Strin
     let Ok(client) = db_client() else {
         return Err((500, "Failed to connect to database".into()));
     };
-    println!("client: made");
     let Some(body) = event.payload.body else {
         return Err((400, "No body provided".into()));
     };
-    println!("body: {}", body);
     let Ok(data): Result<AddBody, _> = serde_json::from_str(&body) else {
         return Err((400, "Body not valid".into()));
     };
@@ -63,7 +59,6 @@ async fn add_handler(event: LambdaEvent<ApiGatewayProxyRequest>) -> Result<Strin
     let Ok(rsvp) = serde_json::to_string(&data.rsvp) else {
         return Err((400, "RSVP not valid".into()));
     };
-    println!("rsvp: {}", rsvp);
     let Ok(res) = client
         .from("rsvp")
         .auth(dotenv::var("SUPABASE_SECRET_KEY").expect("Key already validated to exist"))
@@ -73,14 +68,16 @@ async fn add_handler(event: LambdaEvent<ApiGatewayProxyRequest>) -> Result<Strin
     else {
         return Err((500, "Failed to connect to database".into()));
     };
-    println!("res: {:?}", res);
     let Ok(res_text) = res.text().await else {
         return Err((500, "Failed to connect to database".into()));
     };
-    println!("res_text: {}", res_text);
+    print!("res_text: {:?}", res_text);
     let Ok(created_rsvp) = serde_json::from_str::<Vec<Rsvp>>(&res_text).map(|mut r| r.remove(0))
     else {
-        return Err((500, "Malformed response from db".into()));
+        return Err(serde_json::from_str::<SupabaseError>(&res_text)
+            .map_or((500, "Malformed response from db".into()), |e| {
+                (400, e.message.unwrap_or("Something is wrong".into()))
+            }));
     };
     println!("created_rsvp: {:?}", created_rsvp);
 
@@ -110,15 +107,15 @@ async fn add_handler(event: LambdaEvent<ApiGatewayProxyRequest>) -> Result<Strin
         return Err((500, "Failed to connect to database".into()));
     };
 
-    println!("guest res: {:?}", res);
-
     let Ok(res_text) = res.text().await else {
         return Err((500, "Failed to connect to database".into()));
     };
-    println!("res_text: {}", res_text);
 
     let Ok(created_guests) = serde_json::from_str::<Vec<Guest>>(&res_text) else {
-        return Err((500, "Malformed response from db".into()));
+        return Err(serde_json::from_str::<SupabaseError>(&res_text)
+            .map_or((500, "Malformed response from db".into()), |e| {
+                (400, e.message.unwrap_or("Something is wrong".into()))
+            }));
     };
 
     println!("created_guests: {:?}", created_guests);
@@ -160,4 +157,12 @@ struct Guest {
     rsvp_id: Option<i64>,
     dietary_restrictions: String,
     name: String,
+}
+
+#[derive(Deserialize, Serialize, Debug)]
+struct SupabaseError {
+    code: Option<String>,
+    details: Option<String>,
+    hint: Option<String>,
+    message: Option<String>,
 }
