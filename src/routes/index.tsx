@@ -1,6 +1,6 @@
 import { Prose } from '@/atoms';
 import { Apple, GoogCalendar, GoogMaps } from '@/icons';
-import { Card, Footer, Slider } from '@/molecule';
+import { Card, Footer, Nav, Slider } from '@/molecule';
 import { RSVPForm } from '@/organisms';
 import { Hero } from '@/sections';
 import type { QwikMouseEvent } from '@builder.io/qwik';
@@ -28,8 +28,9 @@ export default component$(() => {
   return (
     <>
       <div class="min-h-[100dvh] w-full bg-red-200">
-        <Hero class="font-script" />
+        <Hero />
       </div>
+      <Nav />
       <div class="w-full px-4 py-8 flex flex-col gap-8 mx-auto max-w-prose">
         <div class="flex flex-col 2xs:flex-row gap-4 flex-wrap">
           <Card class="grow relative basis-0 min-w-max" onClick$={onClick}>

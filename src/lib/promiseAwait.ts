@@ -1,14 +1,3 @@
-
-  globalThis.Promise.prototype.await = function () {
-    return proxyPromise(this);
-  }
-
-declare global {
-  interface Promise<T> {
-    await(): T & Promise<T>;
-  }
-}
-
 export const proxyPromise = <T>(promise: Promise<T>): T & Promise<T> => {
   return new Proxy(() => {}, {
     get: (_target, prop) => {

@@ -89,6 +89,7 @@ export const RSVPForm = component$(() => {
     </Prose>
   ) : (
     <form
+      id="rsvp-form"
       class="w-full px-4 py-8 flex flex-col gap-4 mx-auto max-w-max"
       preventdefault:submit
       onSubmit$={submitRSVP}>
