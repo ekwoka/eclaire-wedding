@@ -22,7 +22,7 @@ export const Nav = component$(() => {
           href="/where-to-stay"
           class={classNames(
             'px-4 py-2 rounded-full',
-            location.url.pathname === '/where-to-stay' &&
+            location.url.pathname === '/where-to-stay/' &&
               'pointer-events-none font-semibold',
           )}>
           Where to Stay
