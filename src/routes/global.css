@@ -59,4 +59,5 @@ html,
 body {
   scroll-behavior: smooth;
   scroll-margin-top: 4rem;
+  overscroll-behavior: contain;
 }

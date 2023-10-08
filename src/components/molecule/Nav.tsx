@@ -5,7 +5,7 @@ import { classNames } from '~/utils';
 export const Nav = component$(() => {
   const location = useLocation();
   return (
-    <header class="w-full z-50 sticky top-14 bg-red-200 py-2">
+    <header class="w-full z-50 sticky top-20 bg-red-200 py-2">
       <nav class="flex justify-around ">
         <Link prefetch href="/#rsvp-form" class="px-4 py-2 rounded-full">
           RSVP
