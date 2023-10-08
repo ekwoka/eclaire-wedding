@@ -7,14 +7,7 @@ export const Nav = component$(() => {
   return (
     <header class="w-full z-50 sticky top-14 bg-red-200 py-2">
       <nav class="flex justify-around ">
-        <Link
-          prefetch
-          href="/#rsvp-form"
-          class={classNames(
-            'px-4 py-2 rounded-full',
-            location.url.pathname === '/' &&
-              'pointer-events-none font-semibold',
-          )}>
+        <Link prefetch href="/#rsvp-form" class="px-4 py-2 rounded-full">
           RSVP
         </Link>
         <Link
