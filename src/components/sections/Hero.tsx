@@ -37,7 +37,6 @@ export const Hero = component$(
     );
 
     useVisibleTask$(() => {
-      console.log(heroHeight.value);
       new TypeWriter(text)
         .withSpeed(200)
         .type('Eric + Claire')
