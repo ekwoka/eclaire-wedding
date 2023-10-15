@@ -15,7 +15,7 @@ export const RSVPForm = component$(() => {
     sending: boolean;
     error: null | string;
     success: boolean;
-  }>({ sending: false, error: null, success: true });
+  }>({ sending: false, error: null, success: false });
 
   const submitRSVP = $(
     async (_e: QwikSubmitEvent<HTMLFormElement>, form: HTMLFormElement) => {
