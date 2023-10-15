@@ -27,14 +27,14 @@ export default component$(() => {
   );
   return (
     <>
-      <div class="min-h-[100dvh] w-full bg-red-200">
+      <div class="min-h-[100dvh] w-full bg-tuscany-200">
         <Hero />
       </div>
       <Nav />
       <div class="w-full px-4 py-8 flex flex-col gap-8 mx-auto max-w-prose">
         <div class="flex flex-col 2xs:flex-row gap-4 flex-wrap">
           <Card class="grow relative basis-0 min-w-max" onClick$={onClick}>
-            <h2 class="uppercase tracking-wide small-caps text-red-900">
+            <h2 class="uppercase tracking-wide small-caps text-tuscany-900">
               When
             </h2>
             <p class="text-xl text-right">
@@ -61,7 +61,7 @@ export default component$(() => {
             </div>
           </Card>
           <Card class="grow relative basis-0 min-w-max" onClick$={onClick}>
-            <h2 class="uppercase tracking-wide small-caps text-red-900">
+            <h2 class="uppercase tracking-wide small-caps text-tuscany-900">
               Where
             </h2>
             <p class="text-right text-xl">Smith Hanok</p>

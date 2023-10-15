@@ -45,3 +45,4 @@ lerna-debug.log*
 # Local Netlify folder
 .netlify
 netlify/functions/**/target/
+public/fonts/eames.otf

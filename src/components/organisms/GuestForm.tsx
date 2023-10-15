@@ -5,7 +5,7 @@ export const GuestForm = component$(
   (props: { isDefault?: boolean; index: number }) => {
     return (
       <div class="w-full p-4 flex flex-col gap-4 mx-auto max-w-max">
-        <h3 class="uppercase tracking-wide small-caps text-red-900">
+        <h3 class="uppercase tracking-wide small-caps text-tuscany-900">
           {props.isDefault
             ? 'Primary Guest'
             : `Additional Guest + ${props.index}`}

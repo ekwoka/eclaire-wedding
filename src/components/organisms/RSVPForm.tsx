@@ -95,7 +95,7 @@ export const RSVPForm = component$(() => {
       class="w-full px-4 py-8 flex flex-col gap-4 mx-auto max-w-max"
       preventdefault:submit
       onSubmit$={submitRSVP}>
-      <h2 class="uppercase tracking-wide small-caps text-red-900">RSVP</h2>
+      <h2 class="uppercase tracking-wide small-caps text-tuscany-900">RSVP</h2>
       <Input label="Email" type="email" placeholder="" />
       <Input label="Name" type="text" placeholder="" />
       <label class="flex justify-between items-center gap-4">
@@ -131,7 +131,7 @@ export const RSVPForm = component$(() => {
         placeholder="Anything else you'd like to tell us?"
       />
       {status.value.error && (
-        <div class="bg-red-500 text-white p-4 rounded">
+        <div class="bg-tuscany-500 text-white p-4 rounded">
           {status.value.error}
         </div>
       )}

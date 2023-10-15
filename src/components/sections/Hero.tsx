@@ -38,25 +38,22 @@ export const Hero = component$(
 
     useVisibleTask$(() => {
       new TypeWriter(text)
-        .withSpeed(200)
+        .withSpeed(150)
         .type('Eric + Claire')
-        .wait(1000)
+        .wait(800)
         .withMode(TypingMode.Insert)
-        .withSpeed(80)
+        .withSpeed(50)
         .type('EClaire ')
-        .wait(300)
+        .wait(200)
+        .andThen(
+          () =>
+            (animationDone.value =
+              heroHeight.value !== undefined
+                ? heroHeight.value > window.innerHeight * (4 / 5)
+                : true),
+        )
         .andThen(() =>
-          new TypeWriter(yearText)
-            .withSpeed(300)
-            .type('2024')
-            .wait(1000)
-            .andThen(
-              () =>
-                (animationDone.value =
-                  heroHeight.value !== undefined
-                    ? heroHeight.value > window.innerHeight * (4 / 5)
-                    : true),
-            ),
+          new TypeWriter(yearText).withSpeed(200).type('2024').wait(500),
         );
     });
     return (
@@ -64,7 +61,7 @@ export const Hero = component$(
         <div
           ref={heroElement}
           class={classNames(
-            'prose max-w-full w-full font-sac flex flex-col justify-center px-8 min-h-max bg-red-200 fixed inset-x-0 top-0 z-10 font-script',
+            'prose max-w-full w-full font-sac flex flex-col justify-center px-8 min-h-max bg-tuscany-200 fixed inset-x-0 top-0 z-10 font-script',
             props.class,
           )}
           style={{
