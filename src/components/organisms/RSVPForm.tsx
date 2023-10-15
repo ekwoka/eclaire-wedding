@@ -15,7 +15,7 @@ export const RSVPForm = component$(() => {
     sending: boolean;
     error: null | string;
     success: boolean;
-  }>({ sending: false, error: null, success: false });
+  }>({ sending: false, error: null, success: true });
 
   const submitRSVP = $(
     async (_e: QwikSubmitEvent<HTMLFormElement>, form: HTMLFormElement) => {
@@ -83,8 +83,10 @@ export const RSVPForm = component$(() => {
         extra info to help you plan your trip!
       </p>
       <ul>
-        <li>Where to stay</li>
-        <li>What to do</li>
+        <li>
+          <a href="/where-to-stay">Where to stay</a>
+        </li>
+        <li>What to do in Seoul (coming soon)</li>
       </ul>
     </Prose>
   ) : (
