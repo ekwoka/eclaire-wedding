@@ -71,7 +71,7 @@ async fn add_handler(event: LambdaEvent<ApiGatewayProxyRequest>) -> Result<Strin
     let Ok(res_text) = res.text().await else {
         return Err((500, "Failed to connect to database".into()));
     };
-    print!("res_text: {:?}", res_text);
+    println!("res_text: {:?}", res_text);
     let Ok(created_rsvp) = serde_json::from_str::<Vec<Rsvp>>(&res_text).map(|mut r| r.remove(0))
     else {
         return Err(serde_json::from_str::<SupabaseError>(&res_text)
