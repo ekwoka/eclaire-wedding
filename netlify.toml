@@ -18,6 +18,11 @@
     to = "/index.html"
     status = 200
 
+[[headers]]
+  for = "/*"
+  [headers.values]
+  Link='</fonts/eames.woff2>;rel="preload";as="font";type="font/woff2";crossorigin=""'
+
 [dev]
   command = "pnpm dev" # Command to start your dev server
   port = 4173 # Port that the dev server will be listening on
