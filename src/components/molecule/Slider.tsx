@@ -28,6 +28,7 @@ export const Slider = component$(() => {
             width={image.width}
             height={image.height}
             key={image.src}
+            alt=""
           />
         );
       })}
